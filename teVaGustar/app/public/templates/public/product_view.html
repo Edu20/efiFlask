@@ -3,13 +3,13 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
+    <h1>{{ product.name }}</h1>
     <div>
-        <span class="blogDate">{{ post.created|datetime('full') }}</span>
+        <span class="blogDate">{{ product.created|datetime('full') }}</span>
     </div>
-    {{ post.content }}
+    {{ product.content }}
     
-    <h2>Comentarios</h2>
+    <!-- <h2>Comentarios</h2>
     {% if current_user.is_authenticated %}
     <div>
         <form action="" method="post" novalidate>
@@ -37,5 +37,5 @@
                 <div>{{ comment.content }}</div>
             </div>
         {% endfor %}
-    </div>
+    </div> -->
 {% endblock %}

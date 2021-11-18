@@ -2,22 +2,29 @@ from flask import render_template, redirect, url_for, abort
 from flask_login import login_required, current_user
 from app.auth.decorators import admin_required
 from app.auth.models import User
-from app.models import Products
+from app.models import Product
 from . import admin_bp
-# from .forms import PostForm, UserAdminForm
+##from .forms import PostForm, UserAdminForm
 
-# @admin_bp.route("/admin/")
-# @login_required
-# @admin_required
-# def index():
-#     return render_template("admin/index.html")
+@admin_bp.route("/admin/")
+@login_required
+@admin_required
+def index():
+    print('"entta aca>??????????')
+    return render_template("admin/index.html")
 
-# @admin_bp.route("/admin/posts/")
-# @login_required
-# @admin_required
-# def list_posts():
-#     posts = Post.get_all()
-#     return render_template("admin/posts.html", posts=posts)
+@admin_bp.route("/admin/categories/")
+@login_required
+@admin_required
+def add_Category():
+    return render_template("admin/newcategory.html", posts=posts)
+
+@admin_bp.route("/admin/posts/")
+@login_required
+@admin_required
+def list_posts():
+    posts = "222222"
+    return render_template("admin/posts.html", posts=posts)
 
 # @admin_bp.route("/admin/post/", methods=['GET', 'POST'])
 # @login_required

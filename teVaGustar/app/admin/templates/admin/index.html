@@ -4,12 +4,11 @@
     Miniblog | Admin
 {% endblock %}
 
-
-
-
 {% block content %}
-    <ul>
-        <li><a href="{{ url_for('admin.list_posts') }}">Posts</a></li>
-        <li><a href="{{ url_for('admin.list_users') }}">Usuarios</a></li>
-    </ul>
+<h1>hola mundo</h1>
+<ul>
+    <a href="{{ url_for('admin.add_Category') }}">Posts</a>
+    <li><a href">Usuarios</a></li>
+</ul>
+{{posts}}
 {% endblock %}
