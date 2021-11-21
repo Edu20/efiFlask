@@ -48,26 +48,23 @@ class Product(db.Model):
     nombre = db.Column(db.String(256), nullable=False)
     descripcion = db.Column(db.String(256), nullable=False)
     imagen = db.Column(db.String(20), nullable=False)
-    categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id', ondelete = 'SET NULL'))
-
+    
+    
+    def __init__(self, nombre=nombre, descripcion=descripcion, imagen=imagen):
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.imagen = imagen
+    
     def __repr__(self):
         return f'<Product {self.nombre}>'
 
     def save(self):
-        if not self.id:
-            db.session.commit.add(self)
-        if not self.descripcion:
-            self.descripcion = slugify(self.nombre)
+        db.session.add(self)
 
-        save = False
-        count = 0
-        while not saved:
-            try:
-                db.session.commit()
-                saved = True
-            except IntegrityError:
-                count +- 1
-                self.descripcion = f'{self.descripcion}-{count}'
+
+
+    def get_product(self):
+        return db.session.query(self).all()
 
     def delete (self):
         db.session.delete(self)
@@ -96,17 +93,26 @@ class Talle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     talles = db.Column(db.String(256), nullable=False)
 
+    def __init__(self, talles=talles):
+        self.talles = talles
+
 
 class Color(db.Model):
     __tablename__ = 'color'
     id = db.Column(db.Integer, primary_key=True)
     colores = db.Column(db.String(256), nullable=False)
 
+    def __init__(self, colores=colores):
+        self.colores = colores
+
 class Category(db.Model):
     __tablename__ = 'categoria'
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(256), nullable=False)
-
+    
+    def __init__(self,category=category):
+        self.category = category
+  
     def get_all():
         return Category.query.all()
 
@@ -118,5 +124,14 @@ class DetalleProducto(db.Model):
     categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id', ondelete = 'SET NULL'))
     color_id = db.Column(db.Integer, db.ForeignKey('color.id', ondelete = 'SET NULL'))
     talle_id = db.Column(db.Integer, db.ForeignKey('talles.id', ondelete = 'SET NULL'))
-    imagen_name = db.Column(db.String(20), nullable=False)
+    imagen_name = db.Column(db.String(250), nullable=False)
     cantidad = db.Column(db.Integer)
+
+    def __init__(self, producto_id=producto_id, categoria_id=categoria_id, color_id=color_id, talle_id=talle_id, imagen_name=imagen_name, cantidad=cantidad):
+        self.producto_id = producto_id
+        self.categoria_id = categoria_id
+        self.color_id = color_id
+        self.talle_id = talle_id
+        self.imagen_name = imagen_name
+        self.cantidad = cantidad
+

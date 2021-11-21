@@ -2,8 +2,8 @@
 {% extends "base_template.html" %}
 <!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
 {% block title %}
-    {% if form.category.data %}
-        {{ form.category.data }}
+    {% if form.color.data %}
+        {{ form.color.data }}
     {% else %}
         Nuevo Post
     {% endif %}
@@ -13,10 +13,10 @@
     <form action="" method="post" enctype="multipart/form-data" novalidate>
         {{ form.hidden_tag() }}
         <div>
-            {{ form.category.label }}
-            {{ form.category(size=128) }}<br>
+            {{ form.color.label }}
+            {{ form.color(size=128) }}<br>
             <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
-            {% for error in form.category.errors %}
+            {% for error in form.color.errors %}
             <span style="color: red;">{{ error }}</span>
             {% endfor %}
         </div>

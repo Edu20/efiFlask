@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from app.common.filters import format_datetime
 # IMPORTAMOS EL MANEJADOR DE MYSQL
 from pymysql import *
+import os
 
 login_manager = LoginManager()
 # CREAMOS EL OBJETO SQLALCHEMY
@@ -16,8 +17,10 @@ migrate = Migrate()  # Se crea un objeto de tipo Migrate
 mail = Mail()
 
 def create_app():
+    
     app = Flask(__name__)
-
+    UPLOAD_FOLDER = os.path.abspath("./teVaGustar/app/uploads/")
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
     # LE DECIMOS A LA APP DONDE SE ENCUENTRA LA BASE DE DATOS
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost/tevagustar'

@@ -7,8 +7,21 @@
 {% block content %}
 <h1>hola mundo</h1>
 <ul>
-    <a href="{{ url_for('admin.add_Category') }}">Posts</a>
-    <li><a href">Usuarios</a></li>
+    <a href="{{ url_for('admin.add_Product') }}">Agregar Producto</a>
+    
 </ul>
+<ul>
+    <a href="{{ url_for('admin.add_Category') }}">Agregar categoria</a>
+</ul>
+<ul>
+    <a href="{{ url_for('admin.add_Color') }}">Agregar color</a>
+</ul>
+<ul>
+    <a href="{{ url_for('admin.add_Talle') }}">Agregar talle</a>
+</ul>
+<ul>
+    <a href="{{ url_for('admin.add_DetalleProducto') }}">Agregar detalle</a>
+</ul>
+
 {{posts}}
 {% endblock %}

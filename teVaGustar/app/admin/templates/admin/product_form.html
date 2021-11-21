@@ -1,0 +1,44 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "base_template.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}
+    {% if form.nombre.data %}
+        {{ form.nombre.data }}
+    {% else %}
+        Nuevo Post
+    {% endif %}
+{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nombre.label }}
+            {{ form.nombre(size=128) }}<br>
+            <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+            {% for error in form.nombre.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.descripcion.label }}
+            {{ form.descripcion }}<br>
+            <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+            {% for error in form.descripcion.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.imagen.label }}
+            {{ form.imagen }}<br>
+            {% for error in form.imagen.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+
+{% endblock %}

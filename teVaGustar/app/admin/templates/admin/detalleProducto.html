@@ -1,0 +1,60 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "base_template.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}
+    
+{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+    <form  action="{{ url_for('admin.add_DetalleProduct') }}"method="POST" enctype="multipart/form-data" novalidate>
+
+          <div class="input-field col s12">
+            <select name='producto'>
+              <option value="" disabled selected>Choose your option</option>
+                {%for product in productos%}
+                <option value= "{{ product.id }}">{{ product.nombre }}</option>
+                {% endfor %}
+            </select>
+            <label>Productos</label>
+          </div>
+          <div class="input-field col s12">
+            <select name='categoria'>
+              <option value="" disabled selected>Choose your option</option>
+                {%for categoria in categorias%}
+                <option value= "{{ categoria.id }}">{{ categoria.category }}</option>
+                {% endfor %}
+            </select>
+            <label>Categoria</label>
+          </div>
+          <div class="input-field col s12">
+            <select name='color'>
+              <option value="" disabled selected>Choose your option</option>
+                {%for color in colores %}
+                <option value= "{{ color.id }}">{{ color.colores }}</option>
+                {% endfor %}
+            </select>
+            <label>Colores</label>
+          </div>
+        
+        <div class="input-field col s12">
+            <select name='talle'>
+              <option value="" disabled selected>Choose your option</option>
+                {%for talle in talles%}
+                <option value= "{{ talle.id }}">{{ talle.talles }}</option>
+                {% endfor %}
+            </select>
+            <label>Talles</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="file" name="imagen">
+            <label>Imagen</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="number" name="cantidad">
+            <label>Cantidad</label>
+          </div>
+        
+        <button type="submit">agregar producto</button>
+    </form>
+
+{% endblock %}
