@@ -9,6 +9,12 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">{{product.Product.nombre}}</span>
+          <span class="card-title">{{product.Color.colores}}</span>
+          <span class="card-title">{{product.Talle.talles}}</span>
+          <span class="card-title">{{product.DetalleProducto.cantidad}}</span>
+          <img class="materialboxed" width="650" src="../../../static/images/imagesProducto/{{product.DetalleProducto.imagen_name}}">
+
+          <h1>{{product.DetalleProducto.imagen_name}}</h1>
         </div>
         <div class="card-action">
             <div class="card-action">
@@ -22,5 +28,17 @@
   </div>
    
    {% endfor %}
+   <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.materialboxed');
+    var instances = M.Materialbox.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+   </script>
 {% endblock %}
 

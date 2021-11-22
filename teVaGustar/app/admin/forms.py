@@ -22,6 +22,7 @@ class ProductForm(FlaskForm):
 
 class CategoryForm(FlaskForm):
     category = StringField('Category', validators=[DataRequired(), Length(max=128)])
+    imagen = FileField('Category', validators=[DataRequired()])
     submit = SubmitField('Guardar')
 
 class ColorForm(FlaskForm):

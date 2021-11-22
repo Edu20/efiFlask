@@ -47,13 +47,13 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(256), nullable=False)
     descripcion = db.Column(db.String(256), nullable=False)
-    imagen = db.Column(db.String(20), nullable=False)
+
     
     
-    def __init__(self, nombre=nombre, descripcion=descripcion, imagen=imagen):
+    def __init__(self, nombre=nombre, descripcion=descripcion):
         self.nombre = nombre
         self.descripcion = descripcion
-        self.imagen = imagen
+        
     
     def __repr__(self):
         return f'<Product {self.nombre}>'
@@ -109,10 +109,11 @@ class Category(db.Model):
     __tablename__ = 'categoria'
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(256), nullable=False)
+    imagen = db.Column(db.String(250), nullable=False)
     
-    def __init__(self,category=category):
+    def __init__(self,category=category,imagen=imagen):
         self.category = category
-  
+        self.imagen = imagen
     def get_all():
         return Category.query.all()
 

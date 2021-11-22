@@ -1,4 +1,5 @@
 from flask import render_template, redirect, url_for, abort, request,current_app
+from flask_migrate import current
 from werkzeug.utils import secure_filename
 
 from flask_login import login_required, current_user
@@ -26,11 +27,16 @@ def add_Category():
     if form.validate_on_submit():
         
         categoryName = form.category.data
-        category = Category(categoryName)
-        db.session.add(category)
-        db.session.commit()
-        
-        return redirect(url_for('admin.list_posts'))
+        categoryImagen = form.imagen.data
+        if categoryImagen :
+            image_name = secure_filename(categoryImagen.filename)
+            print(current_app.config["UPLOAD_FOLDER"])
+            categoryImagen.save(os.path.join(current_app.config["UPLOAD_FOLDER"]+'/imagesCategoria',image_name))
+            category = Category(categoryName,image_name)
+            db.session.add(category)
+            db.session.commit()
+            
+            return redirect(url_for('admin.list_posts'))
 
     return render_template("admin/newcategory.html",form=form)
 
@@ -115,14 +121,11 @@ def add_DetalleProduct():
         talle = request.form['talle']
         imagen = request.files['imagen']
         cantidad = request.form['cantidad']
-        print(imagen.filename)
         if imagen:
             file_path = current_app.config['UPLOAD_FOLDER']
             image_name = secure_filename(imagen.filename)
-
-            imagen.save(os.path.join(current_app.config["UPLOAD_FOLDER"],image_name))
-
-        detalle = DetalleProducto(producto,categoria,color,talle,'./teVaGustar/app/uploads/'+image_name,cantidad)
+            imagen.save(os.path.join(current_app.config["UPLOAD_FOLDER"]+'/imagesProducto',image_name))
+        detalle = DetalleProducto(producto,categoria,color,talle,image_name,cantidad)
         db.session.add(detalle)
         db.session.commit()
         return render_template('admin/index.html')

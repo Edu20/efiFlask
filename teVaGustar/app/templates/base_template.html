@@ -11,51 +11,56 @@
     <link rel="stylesheet" href="{{ url_for("static", filename="base.css") }}">
 </head>
 <body>
+  <div>
     <nav class="#f06292 pink lighten-2">
-        <div class="nav-wrapper container">
-            <a href="#" class="brand-logo">Te va gustar</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('public.index') }}">Home</a></li>
-                <li>
-                    <a href="#" class="dropdown-trigger" data-target="id_drop">
-                        Colección
-                    <i class="material-icons right">arrow_drop_down</i>
-                    </a>
-                </li>
-                {% if current_user.is_anonymous %}
-                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    <li> | </li>
-                    <li><a href="{{ url_for('auth.show_signup_form') }}">Registrar</a></li>
-                {% else %}
-                    {% if current_user.is_admin %}
-                        <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
-                        <li class="pad"> | </li>
-                    {% endif %}
-                    <li class="pad">Bienvenido {{ current_user.name }}</li>
-                    <li> | </li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    <nav class="#f06292 pink lighten-2">
-        <div class="nav-wrapper container">
-          <form>
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </div>
-    </nav>
-    <ul id="id_drop" class="dropdown-content">
-        <li><a href="#">Destacados</a></li>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Nuevo</a></li>
-    </ul>
-<!-- BLOQUE DE CONTENIDO -->
-{% block content %}{% endblock %}
+      <div class="nav-wrapper container">
+          <a href="#" class="brand-logo">Te va gustar</a>
+          <ul class="right hide-on-med-and-down">
+              <li><a href="{{ url_for('public.index') }}">Home</a></li>
+              <li>
+                  <a href="#" class="dropdown-trigger" data-target="id_drop">
+                      Colección
+                  <i class="material-icons right">arrow_drop_down</i>
+                  </a>
+              </li>
+              {% if current_user.is_anonymous %}
+                  <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                  <li> | </li>
+                  <li><a href="{{ url_for('auth.show_signup_form') }}">Registrar</a></li>
+              {% else %}
+                  {% if current_user.is_admin %}
+                      <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
+                      <li class="pad"> | </li>
+                  {% endif %}
+                  <li class="pad">Bienvenido {{ current_user.name }}</li>
+                  <li> | </li>
+                  <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+              {% endif %}
+          </ul>
+      </div>
+  </nav>
+  <nav class="#f06292 pink lighten-2">
+      <div class="nav-wrapper container">
+        <form>
+          <div class="input-field">
+            <input id="search" type="search" required>
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </div>
+  </nav>
+  <ul id="id_drop" class="dropdown-content">
+      <li><a href="#">Destacados</a></li>
+      <li><a href="#">Productos</a></li>
+      <li><a href="#">Nuevo</a></li>
+  </ul>
+
+  </div>
+  
+    {% block content %}{% endblock %} 
+  
+
 <footer class="page-footer">
         <div class="container">
           <div class="row">
@@ -86,10 +91,10 @@
           <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
           </div>
         </div>
-      </footer>
+</footer>
 <!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script>
   
     document.addEventListener('DOMContentLoaded', function() {
       // var elems = document.querySelectorAll('.sidenav');
@@ -97,6 +102,6 @@
       M.AutoInit();
     });
       
-</script>
+  </script>
 </body>
 </html>

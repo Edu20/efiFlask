@@ -2,8 +2,10 @@ from flask import abort, render_template, redirect, url_for, request
 from flask_login import current_user
 
 from app.models import Product, Category
+from app.models import Color, DetalleProducto, Talle
 from . import public_bp
 from .forms import CommentForm
+from app import db
 
 @public_bp.route("/")
 def index():
@@ -37,5 +39,13 @@ def show_error():
 @public_bp.route("/viewcategory/<idCategory>", methods=['GET'])
 def getProductByCategory(idCategory):
     if request.method == 'GET':
-        productos = Product.get_by_id(idCategory)
+        productos = db.session.query(DetalleProducto,Product,Category,Color,Talle
+        ).join(Product,Product.id==DetalleProducto.producto_id
+        ).join(Category,Category.id==DetalleProducto.categoria_id
+        ).join(Color,Color.id==DetalleProducto.color_id
+        ).join(Talle,Talle.id==DetalleProducto.talle_id
+        ).filter(DetalleProducto.categoria_id==idCategory).all()
+        for product in productos:
+            print(product.Category.category)
+
         return render_template("public/productsByCategory.html",productos=productos)    
