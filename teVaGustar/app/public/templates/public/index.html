@@ -4,15 +4,32 @@
 {% block title %}Tutorial Flask: Miniblog{% endblock %}
 <!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
 {% block content %}
-    <ul>
-    {% for post in posts %}
-        <li>
-            <a href="{{ url_for('public.show_post', slug=post.title_slug) }}">
-                {{ post.title }} <span class="postCreated">({{ post.created|datetime }})</span>
-            </a>
-        </li>
-    {% else %}
-        <li>No hay entradas</li>
-    {% endfor %}
-    </ul>
+<div class="row ">
+{% for category in categories %}
+  
+    
+
+  <div class="col s4">
+    <div class="card">
+      <div class="card-image">
+        <img class="materialboxed" width="50" height="300" src="../../../static/images/imagesCategoria/{{category.imagen}}">
+        
+        <form action="/viewcategory/{{category.id}}" method="GET">
+          <button type="submit" class="btn-floating halfway-fab waves-effect waves-light red btn-large">ver</button>
+        </form>
+      </div>
+      <div class="card-content">
+        <span class="card-title center">{{category.category}}</span>
+      </div>
+    </div>
+  </div>
+
+
+{% endfor %}
+
+
+
+</div>
 {% endblock %}
+
+

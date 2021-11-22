@@ -1,15 +1,69 @@
 {% extends "base_template.html" %}
 
 {% block title %}
-    Miniblog | Admin
+Miniblog | Admin
 {% endblock %}
-
-
-
 
 {% block content %}
-    <ul>
-        <li><a href="{{ url_for('admin.list_posts') }}">Posts</a></li>
-        <li><a href="{{ url_for('admin.list_users') }}">Usuarios</a></li>
-    </ul>
+<h1 class="center">Ingresa un nuevo producto</h1>
+<div class="row container">
+
+    <div class="col s3">
+        <ul>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Product') }}">Agregar Producto</a>
+
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Category') }}">Agregar categoria</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Color') }}">Agregar color</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Talle') }}">Agregar talle</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_DetalleProducto') }}">Agregar detalle</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col s9">
+      <img src="{{ url_for('static',filename='images/agrega.jpg') }}" width="100%" height="100%" alt="" class="mar">
+    </div>
+
+  </div>
+
+
 {% endblock %}
+
+
+<div class="row">
+
+    <div class="col s3">
+        <ul>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Product') }}">Agregar Producto</a>
+
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Category') }}">Agregar categoria</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Color') }}">Agregar color</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large mar" href="{{ url_for('admin.add_Talle') }}">Agregar talle</a>
+            </li>
+            <li>
+                <a class="waves-effect waves-light btn-large" href="{{ url_for('admin.add_DetalleProducto') }}">Agregar detalle</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col s9">
+      <!-- Teal page content  -->
+    </div>
+
+  </div>

@@ -1,0 +1,58 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "base_template.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}
+    {% if form.category.data %}
+        {{ form.category.data }}
+    {% else %}
+        Nuevo Post
+    {% endif %}
+{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col s12 m4 12"></div>
+    <div class="col s12 m4 18 #fce4ec pink lighten-5">
+        <br>
+        <br>
+        <form action="" method="post" enctype="multipart/form-data" novalidate>
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.category.label }}
+                {{ form.category(size=128) }}<br>
+                <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+                {% for error in form.category.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                <br>
+                {{ form.imagen.label }}
+                {{ form.imagen(size=128) }}<br>
+    
+                {% for error in form.imagen.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+                <br>
+            </div>
+            <div class="waves-effect waves-light btn">
+                {{ form.submit() }}
+            </div>
+            <br>
+            <br>
+        </form>
+    </div>
+    <div class="col s12 m4 12"></div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
