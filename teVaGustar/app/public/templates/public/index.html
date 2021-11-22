@@ -4,22 +4,26 @@
 {% block title %}Tutorial Flask: Miniblog{% endblock %}
 <!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
 {% block content %}
-<div class="row " style="display:flex; gap: 4px;">
+<div class="row ">
 {% for category in categories %}
+  
+    
 
-    <div class="col s2 card blue-grey darken-1">
-      <div class="card-content white-text">
-        <span class="card-title">{{category.category}}</span>
+  <div class="col s4">
+    <div class="card">
+      <div class="card-image">
+        <img class="materialboxed" width="50" height="300" src="../../../static/images/imagesCategoria/{{category.imagen}}">
+        
+        <form action="/viewcategory/{{category.id}}" method="GET">
+          <button type="submit" class="btn-floating halfway-fab waves-effect waves-light red btn-large">ver</button>
+        </form>
       </div>
-      <div class="card-action">
-        <div class="card-action">
-          <form action="/viewcategory/{{category.id}}" method="GET">
-            <img class="materialboxed" width="65" src="../../../static/images/imagesCategoria/{{category.imagen}}">
-            <button type=submit href=>Ver</button>
-          </form>
-        </div>
+      <div class="card-content">
+        <span class="card-title center">{{category.category}}</span>
       </div>
     </div>
+  </div>
+
 
 {% endfor %}
 
@@ -27,3 +31,5 @@
 
 </div>
 {% endblock %}
+
+

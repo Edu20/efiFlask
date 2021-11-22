@@ -103,8 +103,7 @@ def add_Product():
     if form.validate_on_submit():
         nombre = form.nombre.data
         descripcion = form.descripcion.data
-        imagen = form.imagen.data
-        product = Product(nombre, descripcion, imagen)
+        product = Product(nombre, descripcion)
         db.session.add(product)
         db.session.commit()
         return redirect(url_for('admin.list_posts'))

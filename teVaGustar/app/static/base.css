@@ -54,3 +54,7 @@ sup, sub {
 .pad {
     padding-right: 10px !important;
 }
+
+.mar {
+    margin: 10px !important;
+}
