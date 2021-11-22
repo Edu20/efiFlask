@@ -1,0 +1,33 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "base_template.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}Tutorial Flask: Miniblog{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+<div class="row ">
+{% for category in categories %}
+  
+    
+
+  <div class="col s4">
+    <div class="card">
+      <div class="card-image">
+        <img class="materialboxed" width="50" height="300" src="../../../static/images/imagesCategoria/{{category.imagen}}">
+        
+        <form action="/vista_detalle/{{category.id}}" method="GET">
+          <button type="submit" class="waves-effect #d50000 red accent-4 btn">Eliminar producto de esta categoria</button>
+        </form>
+      </div>
+      <div class="card-content">
+        <span class="card-title center">{{category.category}}</span>
+      </div>
+    </div>
+  </div>
+
+
+{% endfor %}
+
+
+
+</div>
+{% endblock %}

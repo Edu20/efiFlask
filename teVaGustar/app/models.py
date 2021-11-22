@@ -136,3 +136,5 @@ class DetalleProducto(db.Model):
         self.imagen_name = imagen_name
         self.cantidad = cantidad
 
+    def get_by_category(self, idCategoria):
+        return db.session.query(DetalleProducto).filter(DetalleProducto.categoria_id==idCategoria).all()

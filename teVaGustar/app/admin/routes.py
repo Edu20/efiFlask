@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, abort, request,current_app
+from flask import render_template, redirect, url_for, abort, request,current_app, flash
 from flask_migrate import current
 from werkzeug.utils import secure_filename
 
@@ -18,6 +18,56 @@ import os
 def index():
     print('"entta aca>??????????')
     return render_template("admin/index.html")
+
+
+@admin_bp.route("/viewCategory/", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def viewCategory():
+    categories = Category.get_all()
+    return render_template("admin/vistaCategoria.html",categories=categories)
+
+@admin_bp.route("/vista_detalle/<idCategory>/", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def vista_detalle(idCategory):
+    productos = db.session.query(DetalleProducto,Product,Category,Color,Talle
+        ).join(Product,Product.id==DetalleProducto.producto_id
+        ).join(Category,Category.id==DetalleProducto.categoria_id
+        ).join(Color,Color.id==DetalleProducto.color_id
+        ).join(Talle,Talle.id==DetalleProducto.talle_id
+        ).filter(DetalleProducto.categoria_id==idCategory).all()
+    
+    return render_template("admin/vistaDetalle.html",productos=productos)
+
+
+@admin_bp.route("/deletedetalle/<idDetalle>/", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def delete_detalle(idDetalle):
+    detalle = db.session.query(DetalleProducto).filter(DetalleProducto.id == idDetalle).delete()
+    db.session.commit()
+
+    return redirect(url_for('admin.viewCategory'))
+
+@admin_bp.route("/deletecategory/<idCategory>/", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def delete_category(idCategory):
+    category = db.session.query(Category).filter(Category.id == idCategory).delete()
+    detailproduct = db.session.query(DetalleProducto).filter(DetalleProducto.categoria_id == idCategory).delete()
+    db.session.commit()
+    flash ('La categoria se elimino con exito', 'error')
+
+    return redirect(url_for('admin.view_category'))
+
+
+@admin_bp.route("/viewCategorys/", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def view_category():
+    categories = Category.get_all()
+    return render_template("admin/deleteCategory.html",categories=categories)
 
 @admin_bp.route("/admin/categories/", methods=['GET', 'POST'])
 @login_required
