@@ -7,12 +7,15 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Titillium+Web:wght@600&display=swap" rel="stylesheet">  
     <!-- LLAMAMOS UNA HOJA DE ESTILOS ESTÁTICA -->
     <link rel="stylesheet" href="{{ url_for("static", filename="base.css") }}">
 </head>
-<body>
+<body class="#e0e0e0 grey lighten-2">
   <div>
-    <nav class="#f06292 pink lighten-2">
+    <nav class="page-footer">
       <div class="nav-wrapper container">
           <a href="#" class="brand-logo">Te va gustar</a>
           <ul class="right hide-on-med-and-down">
@@ -39,7 +42,7 @@
           </ul>
       </div>
   </nav>
-  <nav class="#f06292 pink lighten-2">
+  <nav class="page-footer">
       <div class="nav-wrapper container">
         <form>
           <div class="input-field">
@@ -57,38 +60,58 @@
   </ul>
 
   </div>
+
+  <div class="#e0e0e0 grey lighten-2">
+    {% block content %}{% endblock %}
+  </div>
   
-    {% block content %}{% endblock %} 
+    
   
 
 <footer class="page-footer">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              <h5 class="white-text">Contacto</h5>
+              <p class="grey-text text-lighten-4">Puedes venir a nuestro local ubicado en la calle: <b>Alvear 920</b> </p>
+              <br>
+              <p class="grey-text text-lighten-4">Mandanos un mensaje al Whatsapp de la empresa y en breve nos comunicamos con vos!</p>
+              <p class="center gran"><b>+543584789451</b></p>
             </div>
             <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Sociales</h5>
+              <h5 class="white-text center">Sociales</h5>
+              <br>
               <ul>
                 <li><a class="grey-text text-lighten-3" href="#!">
-                    <img src="{{ url_for('static',filename='images/f.jpg') }}" class="" alt="">
-                    Seguinos en Facebook
+                    <div class="row">
+                      <div class="col s4 right">
+                        <img src="{{ url_for('static',filename='images/f.jpg') }}" class="" alt="">
+                      </div>
+                      <div class="col s8 mar2">
+                        Seguinos en Facebook
+                      </div>
+                    </div>
+                    
+                    
                 </a></li>
                 <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/te_va_gustar/">
-                    <img src="{{ url_for('static',filename='images/ins.jpg') }}" class="" alt="">
-                    Seguinos en Instagram
+                  <div class="row">
+                    <div class="col s4 right">
+                      <img src="{{ url_for('static',filename='images/ins.jpg') }}" class="" alt="">
+                    </div>
+                    <div class="col s8 mar2">
+                      Seguinos en Instagram
+                    </div>
+                  </div>
                 </a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-copyright">
           <div class="container">
-          © 2014 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          Sobre nosotros
+          <a class="grey-text text-lighten-4 right" href="#!">Mail</a>
           </div>
         </div>
 </footer>
